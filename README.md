@@ -33,16 +33,9 @@ really a list containing a function to
             m <- NULL
             set <- function(y) {
                     x <<- y
-                    m <<- NULL
-            }
-            get <- function() x
-            setmean <- function(mean) m <<- mean
-            getmean <- function() m
-            list(set = set, get = get,
-                 setmean = setmean,
-                 getmean = getmean)
-    }
-
+                    
+                           
+ 
 The following function calculates the mean of the special "vector"
 created with the above function. However, it first checks to see if the
 mean has already been calculated. If so, it `get`s the mean from the
@@ -103,3 +96,43 @@ In order to complete this assignment, you must do the following:
 ### Grading
 
 This assignment will be graded via peer assessment.
+
+# Programming Assignmnet2 : Lexical Scoping
+ #Making CacheMatrix and CacheSolve 
+makeCacheMatrix <- function(x = matrix()) {
+  i <- NULL
+  set <- function(y) {
+    x <<- y
+    i <<- NULL
+  }
+  get <- function() x
+  setinverse <- function(inverse) i <<- inverse
+  getinverse <- function() i
+  list(set = set,
+       get = get,
+       setinverse = setinverse,
+       getinverse = getinverse)
+}
+
+
+cacheSolve <- function(x, ...) {
+  i <- x$getinverse()
+  if (!is.null(i)) {
+    message("getting cached data")
+    return(i)
+  }
+  data <- x$get()
+  i <- solve(data, ...)
+  x$setinverse(i)
+  i
+}
+                    m <<- NULL
+            }
+            get <- function() x
+            setmean <- function(mean) m <<- mean
+            getmean <- function() m
+            list(set = set, get = get,
+                 setmean = setmean,
+                 getmean = getmean)
+    }
+
